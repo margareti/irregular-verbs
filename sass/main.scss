@@ -2,11 +2,17 @@ body {
 	font-family: Roboto, Arial, sans-serif;
 }
 .choose-verbs fieldset {
-	margin-bottom: 10px;
-width: 28%;
-border-width: 2px;
-border-style: solid;
-padding: 0;
+  width: calc((100% - 20px) / 3);
+  border-width: 2px;
+  border-style: solid;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.choose-verbs fieldset:nth-child(3n+1) {
+   margin-right: 0;
 }
 .choose-verbs input {
 	display: none;
@@ -28,15 +34,27 @@ position: relative;
 }
 .l-one fieldset {
 	border-color: rebeccapurple;
+	&:hover {
+		border-color: lighten(rebeccapurple, 15%)
+	}
 }
 .l-two fieldset {
 	border-color: cadetblue;
+	&:hover {
+		border-color: lighten(cadetblue, 15%)
+	}
 }
 .l-three fieldset {
 	border-color: bisque;
+	&:hover {
+		border-color: darken(bisque, 15%)
+	}
 }
 .l-four fieldset {
 	border-color: cornflowerblue;
+	&:hover {
+		border-color: lighten(cornflowerblue, 15%)
+	}
 }
 .choose-verbs > div {
 	display: flex;
