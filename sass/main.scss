@@ -10,6 +10,8 @@ body {
   margin: 0;
   margin-right: 10px;
   margin-bottom: 10px;
+
+
 }
 .choose-verbs fieldset:nth-child(3n+1) {
    margin-right: 0;
@@ -17,60 +19,87 @@ body {
 .choose-verbs input {
 	display: none;
 }
+.l-one label:after {
+	color: rebeccapurple;
+}
+.l-two label:after {
+	color: cadetblue;
+}
+.l-four label:after {
+	color: darken(cornflowerblue, 15%);
+}
 .choose-verbs input:checked + label:after {
 	content: '✔';
 	position: absolute;
 	right: 10px;
+	
 }
+.l-one label:hover {
+	background: rgba(rebeccapurple, 0.25);
+}
+.l-one input:checked + label {
+	background: rgba(rebeccapurple, 0.15);
+}
+
+.l-two label:hover {
+	background: rgba(cadetblue, 0.25);
+}
+.l-two input:checked + label {
+	background: rgba(cadetblue, 0.15);
+}
+
 .choose-verbs label {
 	display: block;
 width: 100%;
-padding: 4px 14px;
+padding: 7px 14px;
 box-sizing: border-box;
 position: relative;
+cursor: pointer;
 }
 .fold fieldset {
 	display: none;
 }
 .l-one fieldset {
 	border-color: rebeccapurple;
-	&:hover {
-		border-color: lighten(rebeccapurple, 15%)
-	}
 }
 .l-two fieldset {
 	border-color: cadetblue;
 	&:hover {
-		border-color: lighten(cadetblue, 15%)
+		border-color: lighten(cadetblue, 15%);
 	}
 }
 .l-three fieldset {
-	border-color: bisque;
+	border-color: darken(bisque, 15%);
 	&:hover {
-		border-color: darken(bisque, 15%)
+		border-color: darken(bisque, 10%);
 	}
 }
 .l-four fieldset {
 	border-color: cornflowerblue;
 	&:hover {
-		border-color: lighten(cornflowerblue, 15%)
+		border-color: darken(cornflowerblue, 15%)
 	}
 }
 .choose-verbs > div {
 	display: flex;
 	flex-wrap: wrap;
 }
-.choose-verbs h3 {
+.toggle-fold {
 	width: 100%;
-margin: 0;
-padding-bottom: 10px;
-border-bottom-width: 1px;
-margin-bottom: 10px;
-border-bottom-style: solid;
-border-bottom-color: slategrey;
+	margin: 0;
+	padding-bottom: 5px;
+	border-bottom-width: 1px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	border-bottom-style: solid;
+	border-bottom-color: slategrey;
+	cursor: pointer;
 }
 button {
 	cursor: pointer;
+	border: 1px solid bisque;
+	background: rgba(bisque, 85%);
+	font-family: Roboto, Arial, sans-serif;
 }
 .hide {
 	display: none;

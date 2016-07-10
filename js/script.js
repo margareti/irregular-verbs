@@ -127,6 +127,8 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	'write': ['wrote', 'written']
   }
   var submitBtn = document.getElementById('chooseVerbs');
+  var toggleFold = document.getElementsByClassName('toggle-fold');
+  fold(toggleFold);
   submitBtn.addEventListener('click', populate);
   
 
@@ -160,22 +162,6 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	return false;
   }
 
-  function getOptions(raw) {
-  	var optionsWrap = document.querySelector('.options-wrap');
-  	for (var i = 0; i < raw.length; i++) {
-			var fs = document.createElement('fieldset');
-			var ch = document.createElement('input');
-			ch.type = 'checkbox';
-			ch.name = raw[i];
-			ch.id = raw[i];
-			var lb = document.createElement('label');
-			lb.htmlFor = raw[i];
-		  lb.innerText = raw[i];
-			fs.appendChild(ch);
-			fs.appendChild(lb);
-			optionsWrap.appendChild(fs);
-		}
-  }
 
 	function getNext(elem, arr, index, func) {
     elem.addEventListener('click', function(e) {
@@ -187,9 +173,32 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       	}
         func(arr[index]);
         index++;
-
       } 
     }, false);
+	}
+
+	function fold(arr) {
+		var i = 0;
+		var j;
+		var elem;
+		var titles = document.getElementsByClassName('choose-verbs-section');
+		var parentClass;
+		for (; i < arr.length; i++) {
+      elem = arr[i];
+      elem.addEventListener('click', function() {
+        parentClass = this.parentElement.classList;
+        if (parentClass.contains('fold')) {
+        	for (j = 0; j < titles.length; j++) {
+
+          	titles[j].classList.add('fold');
+          	console.log(titles[j].classList)
+          }
+        	parentClass.remove('fold');
+        } else {
+        	parentClass.add('fold');
+        }
+      })
+		}
 	}
 
   function study(el) {
