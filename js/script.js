@@ -128,6 +128,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   }
   var submitBtn = document.getElementById('chooseVerbs');
   submitBtn.addEventListener('click', populate);
+  
 
   function getChecked() {
   	var checked = [];
@@ -157,6 +158,23 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       getNext(nextBtn, words, idx, study);
   	}
   	return false;
+  }
+
+  function getOptions(raw) {
+  	var optionsWrap = document.querySelector('.options-wrap');
+  	for (var i = 0; i < raw.length; i++) {
+			var fs = document.createElement('fieldset');
+			var ch = document.createElement('input');
+			ch.type = 'checkbox';
+			ch.name = raw[i];
+			ch.id = raw[i];
+			var lb = document.createElement('label');
+			lb.htmlFor = raw[i];
+		  lb.innerText = raw[i];
+			fs.appendChild(ch);
+			fs.appendChild(lb);
+			optionsWrap.appendChild(fs);
+		}
   }
 
 	function getNext(elem, arr, index, func) {
@@ -209,7 +227,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     scSrc.type = 'audio/mp3';
 
     study.appendChild(au);
-    
-
   }
 })();
+
+
