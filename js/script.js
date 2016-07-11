@@ -129,6 +129,11 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   var submitBtn = document.getElementById('chooseVerbs');
   var toggleFold = document.getElementsByClassName('toggle-fold');
   var practiceBtn = document.getElementById('practiceVerbs');
+
+  var counterEl = document.querySelector('.full-height-block__counter');
+  var total;
+  var numCorrect = 0;
+
   fold(toggleFold);
   submitBtn.addEventListener('click', populate);
   practiceBtn.addEventListener('click', practice);
@@ -142,23 +147,22 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     var selection = document.querySelector('.choose-verbs');
     var nextBtn = document.getElementById('next');
     var idx = 0;
-    var total = words.length;
-    var numCorrect = 0;
     var studySection = document.querySelector('.study');
-    var correctCounter = document.querySelector('.full-height-block__counter');
-    correctCounter.classList.add('active');
-
+    
+    counterEl.classList.add('active');
+    
     ev.preventDefault();
 
-    updateCounter(numCorrect, total, correctCounter);
+    total = words.length;
+    updateCounter(numCorrect, total, counterEl);
     selection.classList.add('hide');
     studySection.classList.remove('hide');
     if (words.length) {
       idx++;
       study(words[0]);
       console.log("input ", words[0])
-      randomize(words[0], numCorrect, total, correctCounter);
-      getNextPractice(nextBtn, words, idx, study, randomize, numCorrect, total, correctCounter);
+      randomize(words[0]);
+      getNextPractice(nextBtn, words, idx, study, randomize);
     }
     return false;
   }
@@ -213,7 +217,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     }, false);
 	}
 
-  function getNextPractice(elem, arr, index, func1, func2, numCorrect, total, correctCounter) {
+  function getNextPractice(elem, arr, index, func1, func2) {
     elem.addEventListener('click', function(e) {
       e.preventDefault();
       var nxt = document.getElementById('next');
@@ -224,7 +228,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
           nxt.addEventListener('click', function(){window.location = 'http://localhost:3000/';})
         }
         func1(arr[index]);
-        func2(arr[index], numCorrect, total, correctCounter);
+        func2(arr[index]);
         index++;
       } 
     }, false);
@@ -253,11 +257,10 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       })
 		}
 	}
-  function checkInput(elem, arr, index, numCorrect, total, counterEl) {
+  function checkInput(elem, arr, index) {
     var input;
     var isCorrect = false;
-    console.log(counterEl);
-    console.log(numCorrect);
+    
 
     elem.addEventListener('keydown', function(e) {
       if (!elem.classList.contains('active')) {
@@ -270,8 +273,9 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
           }
           
           if (isCorrect) {
+
             this.classList.add('active');
-            numCorrect+= 1;
+            numCorrect += 1;
             updateCounter(numCorrect, total, counterEl);
             console.log("congrats, correct");
           } else {
@@ -285,7 +289,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     });
   }
 
-  function randomize(verb, numCorrect, total, counterEl) {
+  function randomize(verb) {
     var index = Math.floor(Math.random() * 2);
     var forms = document.getElementsByClassName('full-height-block__list-item');
     var input = document.createElement('input');
@@ -294,7 +298,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     input.classList.add('full-height-block__input');
     forms[index + 1].innerText = '';
     forms[index + 1].appendChild(input);
-    checkInput(document.querySelector('.full-height-block__input'), verb, index, numCorrect, total, counterEl);
+    checkInput(document.querySelector('.full-height-block__input'), verb, index);
   }
 
   function study(el) {
