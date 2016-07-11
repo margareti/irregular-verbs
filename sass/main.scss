@@ -19,6 +19,18 @@ body {
   text-align: center;
   margin-right: 10px;
   text-decoration: none;
+  &--small {
+    font-size: 12px;
+    width: auto;
+    border-width: 1px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    &.button--transparent {
+    	border-width: 1px;
+    }
+	}
+
   &:hover {
   	background-color: darken(cadetblue, 40%);
   }
@@ -49,7 +61,7 @@ body {
 	padding-bottom: 5px;
 	border-bottom-width: 1px;
 	margin-bottom: 10px;
-	padding-top: 10px;
+	padding-top: 15px;
 	border-bottom-style: solid;
 	border-bottom-color: slategrey;
 	cursor: pointer;

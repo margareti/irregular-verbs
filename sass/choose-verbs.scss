@@ -45,11 +45,19 @@
 
 .choose-verbs label {
 	display: block;
-width: 100%;
-padding: 7px 14px;
-box-sizing: border-box;
-position: relative;
-cursor: pointer;
+	width: 100%;
+	padding: 7px 14px;
+	box-sizing: border-box;
+	position: relative;
+	cursor: pointer;
+}
+.translation {
+    opacity: 0;
+    transition: 1s;
+
+}
+.choose-verbs label:hover .translation{
+	opacity: 1;
 }
 .fold fieldset {
 	display: none;

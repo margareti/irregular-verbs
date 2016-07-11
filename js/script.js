@@ -133,6 +133,49 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   var counterEl = document.querySelector('.full-height-block__counter');
   var total;
   var numCorrect = 0;
+  var chooseAll = document.getElementsByClassName('choose-verbs__all');
+  var clearBtns = document.getElementsByClassName('choose-verbs__clear-all');
+  
+  toggleAll(chooseAll);
+  clearAll(clearBtns);
+
+  function toggleAll(elem) {
+    
+    var parent;
+    var cBoxes;
+    var j = 0;
+    for (; j < elem.length; j++) {
+	  	elem[j].addEventListener('click', function(ev){
+	  		
+        var i = 0;
+	  		ev.stopPropagation();
+	  		parent = this.parentElement.parentElement;
+        cBoxes = parent.getElementsByTagName('input');
+        for (; i < cBoxes.length; i++) {
+        	cBoxes[i].checked = true;
+        }
+	  	});
+	  }	
+  }
+
+  function clearAll(elem) {
+    
+    var j = 0;
+    var parent;
+    var cBoxes;
+    for (; j < elem.length; j++) {
+	  	elem[j].addEventListener('click', function(ev){
+	  		var i = 0;
+	  		ev.stopPropagation();
+	  		parent = this.parentElement.parentElement;
+        cBoxes = parent.getElementsByTagName('input');
+        for (; i < cBoxes.length; i++) {
+        	cBoxes[i].checked = false;
+        }
+	  	});
+	  }	
+
+  }
 
   fold(toggleFold);
   submitBtn.addEventListener('click', populate);
