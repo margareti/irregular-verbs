@@ -150,6 +150,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       current = arr[i];
       currentItem = document.getElementById(current);
       currentItem.parentElement.classList.add('active');
+      passed.push(arr[i]);
     }
 	}
 	if (!localStorage.passed) {
