@@ -1,0 +1,44 @@
+.study {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &.hide {
+    display: none;
+  }
+}
+.study__study-content {
+    
+  margin-top: auto;
+}
+.study__study-verb {
+	  text-align: center;
+    font-size: 40px;
+}
+.study__study-forms {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.study audio {
+    margin: auto;
+    display: block;
+}
+.study__btn-wrap {
+    text-align: right;
+    
+    margin-top: auto;
+}
+.study__study-form {
+    display: inline-block;
+    font-size: 35px;
+    border: 1px dashed cadetblue;
+    padding: 5px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: 2s;
+    &:hover {
+    	border-style: solid;
+    }
+}

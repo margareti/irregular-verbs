@@ -1,88 +1,46 @@
 body {
 	font-family: Roboto, Arial, sans-serif;
 }
-.choose-verbs fieldset {
-  width: calc((100% - 20px) / 3);
-  border-width: 2px;
-  border-style: solid;
-  padding: 0;
-  box-sizing: border-box;
-  margin: 0;
-  margin-right: 10px;
+
+.button {
+  cursor: pointer;
+  border: 1px solid bisque;
+  background: cadetblue;
+  font-size: 20px;
+  font-family: Roboto, Arial, sans-serif;
+  width: 255px;
+  padding: 10px;
+  color: #fafafa;
+  transition: 1s;
+  outline: none;
+  border-radius: 40px;
   margin-bottom: 10px;
-
-
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  &:hover {
+  	background-color: darken(cadetblue, 40%);
+  }
+  &--transparent {
+		border: 3px solid cadetblue;
+		background: transparent;
+		color: cadetblue;
+		&:hover {
+	  	border-color: darken(cadetblue, 40%);
+	  	color: #ffffff;
+	  }
+	}	
 }
-.choose-verbs fieldset:nth-child(3n+1) {
-   margin-right: 0;
-}
-.choose-verbs input {
+
+.hide {
 	display: none;
 }
-.l-one label:after {
-	color: rebeccapurple;
-}
-.l-two label:after {
-	color: cadetblue;
-}
-.l-four label:after {
-	color: darken(cornflowerblue, 15%);
-}
-.choose-verbs input:checked + label:after {
-	content: '✔';
-	position: absolute;
-	right: 10px;
-	
-}
-.l-one label:hover {
-	background: rgba(rebeccapurple, 0.25);
-}
-.l-one input:checked + label {
-	background: rgba(rebeccapurple, 0.15);
-}
-
-.l-two label:hover {
-	background: rgba(cadetblue, 0.25);
-}
-.l-two input:checked + label {
-	background: rgba(cadetblue, 0.15);
-}
-
-.choose-verbs label {
-	display: block;
-width: 100%;
-padding: 7px 14px;
-box-sizing: border-box;
-position: relative;
-cursor: pointer;
-}
-.fold fieldset {
-	display: none;
-}
-.l-one fieldset {
-	border-color: rebeccapurple;
-}
-.l-two fieldset {
-	border-color: cadetblue;
-	&:hover {
-		border-color: lighten(cadetblue, 15%);
-	}
-}
-.l-three fieldset {
-	border-color: darken(bisque, 15%);
-	&:hover {
-		border-color: darken(bisque, 10%);
-	}
-}
-.l-four fieldset {
-	border-color: cornflowerblue;
-	&:hover {
-		border-color: darken(cornflowerblue, 15%)
-	}
-}
-.choose-verbs > div {
-	display: flex;
-	flex-wrap: wrap;
+.container {
+	max-width: 1300px;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 0 10px;
 }
 .toggle-fold {
 	width: 100%;
@@ -94,22 +52,4 @@ cursor: pointer;
 	border-bottom-style: solid;
 	border-bottom-color: slategrey;
 	cursor: pointer;
-}
-button {
-	cursor: pointer;
-	border: 1px solid bisque;
-	background: rgba(bisque, 85%);
-	font-family: Roboto, Arial, sans-serif;
-}
-.hide {
-	display: none;
-}
-.container {
-	max-width: 900px;
-	margin: 0 auto;
-	box-sizing: border-box;
-	padding: 10px;
-}
-.right-align {
-	text-align: right;
 }

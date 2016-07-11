@@ -101,7 +101,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	'shoot': ['shot'],
   	'show': ['showed', 'shown'],
   	'shut': ['shut'],
-  	'sing': ['sang'],
+  	'sing': ['sang', 'sung'],
   	'sink': ['sank', 'sunk'],
   	'sit': ['sat'],
     'sleep': ['slept'],
@@ -150,10 +150,11 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	var selection = document.querySelector('.choose-verbs');
   	var nextBtn = document.getElementById('next');
   	var idx = 0;
-  	
+  	var studySection = document.querySelector('.study');
 
   	ev.preventDefault();
   	selection.classList.add('hide');
+  	studySection.classList.remove('hide');
   	if (words.length) {
       idx++;
       study(words[0]);
@@ -165,11 +166,13 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
 
 	function getNext(elem, arr, index, func) {
     elem.addEventListener('click', function(e) {
-    	console.log(index)
+    	e.preventDefault();
+    	var nxt = document.getElementById('next');
       if (index < arr.length) {
         console.log(arr.length);
       	if (index + 1 === arr.length) {
-      		document.getElementsByClassName('btn-wrap')[0].removeChild(elem);
+      		nxt.innerText = 'Back';
+          nxt.addEventListener('click', function(){window.location = 'http://localhost:3000/';})
       	}
         func(arr[index]);
         index++;
@@ -177,11 +180,12 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     }, false);
 	}
 
+
 	function fold(arr) {
 		var i = 0;
 		var j;
 		var elem;
-		var titles = document.getElementsByClassName('choose-verbs-section');
+		var titles = document.getElementsByClassName('choose-verbs__section');
 		var parentClass;
 		for (; i < arr.length; i++) {
       elem = arr[i];
@@ -202,10 +206,10 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
 	}
 
   function study(el) {
-    var headline = document.querySelector('.study-verb');
-    var forms = document.getElementsByClassName('study-form');
+    var headline = document.querySelector('.full-height-block__verb');
+    var forms = document.getElementsByClassName('full-height-block__list-item');
     var i = 0;
-    var study = document.querySelector('.study-content');
+    var study = document.querySelector('.full-height-block__content');
     var play = document.getElementById('play');
     var audio = document.getElementsByTagName('audio');
     var btnWrap = document.getElementsByClassName('btn-wrap')[0];
@@ -216,10 +220,11 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     	if (i === 0) {
     		forms[i].innerText = el;
     	} else {
-    		if (verbs[el].length === i) {
-    			forms[i].innerText = verbs[el][i - 1];
+    		console.log(verbs[el])
+    		if (verbs[el].length === 1) {
+    			forms[i].innerText = verbs[el][0];
     		} else {
-    			forms[i].innerText = verbs[el][i];
+    			forms[i].innerText = verbs[el][i - 1];
     		}
     		
     	}

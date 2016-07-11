@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<section class="choose-verbs">
-		  <div class="l-one choose-verbs-section">
+		  <div class="choose-verbs__section  choose-verbs__section--one">
 		  	<h3 class="toggle-fold">Level 1</h3>
 		  	<fieldset><input type="checkbox" name="think" id="think"><label for="think">think</label></fieldset>
 		  	<fieldset><input type="checkbox" name="tell" id="tell"><label for="tell">tell</label></fieldset>
@@ -48,7 +48,7 @@
 				<fieldset><input type="checkbox" name="begin" id="begin"><label for="begin">begin</label></fieldset>
 				<fieldset><input type="checkbox" name="be" id="be"><label for="be">be</label></fieldset>
 		  </div>
-		  <div class="l-two fold choose-verbs-section">
+		  <div class="fold choose-verbs__section  choose-verbs__section--two">
 		  	<h3 class="toggle-fold">Level 2</h3>
 		  	<fieldset><input type="checkbox" name="write" id="write"><label for="write">write</label></fieldset>
 		  	<fieldset><input type="checkbox" name="understand" id="understand"><label for="understand">understand</label></fieldset>
@@ -75,7 +75,7 @@
 				
 				<fieldset><input type="checkbox" name="become" id="become"><label for="become">become</label></fieldset>
 		  </div>
-		  <div class="l-three fold choose-verbs-section">
+		  <div class="fold choose-verbs__section  choose-verbs__section--three">
 		  	<h3 class="toggle-fold">Level 3</h3>
 		  	<fieldset><input type="checkbox" name="wake" id="wake"><label for="wake">wake</label></fieldset>
 		  	<fieldset><input type="checkbox" name="win" id="win"><label for="win">win</label></fieldset>
@@ -100,7 +100,7 @@
 				<fieldset><input type="checkbox" name="build" id="build"><label for="build">build</label></fieldset>
 				<fieldset><input type="checkbox" name="bite" id="bite"><label for="bite">bite</label></fieldset>
 		  </div>
-		  <div class="l-four fold choose-verbs-section">
+		  <div class="fold choose-verbs__section  choose-verbs__section--four">
 		  	<h3 class="toggle-fold">Level 4</h3>
 				<fieldset><input type="checkbox" name="upset" id="upset"><label for="upset">upset</label></fieldset>
 				<fieldset><input type="checkbox" name="throw" id="throw"><label for="throw">throw</label></fieldset>
@@ -124,22 +124,44 @@
 				<fieldset><input type="checkbox" name="bleed" id="bleed"><label for="bleed">bleed</label></fieldset>
 				<fieldset><input type="checkbox" name="bet" id="bet"><label for="bet">bet</label></fieldset>
 			</div>
-			<button id="chooseVerbs">Study!</button>
+			<div>
+				<button id="chooseVerbs" class="button">Study!</button>
+				<button id="practiceVerbs" class="button  button--transparent">Practice!</button>
+			</div>
+			
 		</section>
-		<section class="study hide">
-			<div class="study-content">
-				<h2 class="study-verb">To be </h2>
-				<ul class="study-forms">
-				  <li class="study-form">be</li>
-					<li class="study-form">was/were</li>
-					<li class="study-form">been</li>
+		<section class="study hide  full-height-block">
+			<div class="full-height-block__content">
+				<h2 class="full-height-block__verb">To be </h2>
+				<ul class="full-height-block__forms">
+				  <li class="full-height-block__list-item">be</li>
+					<li class="full-height-block__list-item">was/were</li>
+					<li class="full-height-block__list-item">been</li>
 				</ul>
 				<audio id="play" controls>
 				 <source src="https://elt.oup.com/elt/students/genericwordlist/irregularverbs/audio/be.mp3" type='audio/mp3'>
 				</audio>
 			</div>
-			<div class="right-align btn-wrap" >
-				<button id="next">Next &ggg;</button>
+			<div class="full-height-block__btn-wrap btn-wrap" >
+				<button class="button" id="next">Next &ggg;</button>
+			</div>
+		</section>
+		<section class="practice  full-height-block">
+			<div class="full-height-block__content">
+				<h2 class="full-height-block__verb">To be </h2>
+				<ul class="full-height-block__forms">
+				  <li class="full-height-block__list-item">be</li>
+					<li class="full-height-block__list-item">
+						<input type="text" class="full-height-block__input">
+					</li>
+					<li class="full-height-block__list-item">been</li>
+				</ul>
+				<audio id="play" controls>
+				 <source src="https://elt.oup.com/elt/students/genericwordlist/irregularverbs/audio/be.mp3" type='audio/mp3'>
+				</audio>
+			</div>
+			<div class="full-height-block__btn-wrap btn-wrap" >
+				<button class="button" id="next">Next &ggg;</button>
 			</div>
 		</section>
 	</div>

@@ -1,0 +1,81 @@
+.choose-verbs fieldset {
+  width: calc((100% - 20px) / 3);
+  border-width: 2px;
+  border-style: solid;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.choose-verbs fieldset:nth-child(3n+1) {
+   margin-right: 0;
+}
+.choose-verbs input {
+	display: none;
+}
+.choose-verbs__section--one label:after {
+	color: rebeccapurple;
+}
+.choose-verbs__section--two label:after {
+	color: cadetblue;
+}
+.choose-verbs__section--four label:after {
+	color: darken(cornflowerblue, 15%);
+}
+.choose-verbs input:checked + label:after {
+	content: '✔';
+	position: absolute;
+	right: 10px;
+	
+}
+.choose-verbs__section--one label:hover {
+	background: rgba(rebeccapurple, 0.25);
+}
+.choose-verbs__section--one input:checked + label {
+	background: rgba(rebeccapurple, 0.15);
+}
+
+.choose-verbs__section--two label:hover {
+	background: rgba(cadetblue, 0.25);
+}
+.choose-verbs__section--two input:checked + label {
+	background: rgba(cadetblue, 0.15);
+}
+
+.choose-verbs label {
+	display: block;
+width: 100%;
+padding: 7px 14px;
+box-sizing: border-box;
+position: relative;
+cursor: pointer;
+}
+.fold fieldset {
+	display: none;
+}
+.choose-verbs__section--one fieldset {
+	border-color: rebeccapurple;
+}
+.choose-verbs__section--two fieldset {
+	border-color: cadetblue;
+	&:hover {
+		border-color: lighten(cadetblue, 15%);
+	}
+}
+.choose-verbs__section--three fieldset {
+	border-color: darken(bisque, 15%);
+	&:hover {
+		border-color: darken(bisque, 10%);
+	}
+}
+.choose-verbs__section--four fieldset {
+	border-color: cornflowerblue;
+	&:hover {
+		border-color: darken(cornflowerblue, 15%)
+	}
+}
+.choose-verbs > div {
+	display: flex;
+	flex-wrap: wrap;
+}
