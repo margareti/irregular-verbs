@@ -128,8 +128,41 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   }
   var submitBtn = document.getElementById('chooseVerbs');
   var toggleFold = document.getElementsByClassName('toggle-fold');
+  var practiceBtn = document.getElementById('practiceVerbs');
   fold(toggleFold);
   submitBtn.addEventListener('click', populate);
+  practiceBtn.addEventListener('click', practice);
+
+  function updateCounter(num, total, el) {
+    el.innerText = num + '/' + total;
+  }
+
+  function practice(ev) {
+    var words = getChecked();
+    var selection = document.querySelector('.choose-verbs');
+    var nextBtn = document.getElementById('next');
+    var idx = 0;
+    var total = words.length;
+    var numCorrect = 0;
+    var studySection = document.querySelector('.study');
+    var correctCounter = document.querySelector('.full-height-block__counter');
+    correctCounter.classList.add('active');
+
+    ev.preventDefault();
+
+    updateCounter(numCorrect, total, correctCounter);
+    selection.classList.add('hide');
+    studySection.classList.remove('hide');
+    if (words.length) {
+      idx++;
+      study(words[0]);
+      console.log("input ", words[0])
+      randomize(words[0], numCorrect, total, correctCounter);
+      getNextPractice(nextBtn, words, idx, study, randomize, numCorrect, total, correctCounter);
+    }
+    return false;
+  }
+
   
 
   function getChecked() {
@@ -180,6 +213,22 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     }, false);
 	}
 
+  function getNextPractice(elem, arr, index, func1, func2, numCorrect, total, correctCounter) {
+    elem.addEventListener('click', function(e) {
+      e.preventDefault();
+      var nxt = document.getElementById('next');
+      if (index < arr.length) {
+        console.log(arr.length);
+        if (index + 1 === arr.length) {
+          nxt.innerText = 'Back';
+          nxt.addEventListener('click', function(){window.location = 'http://localhost:3000/';})
+        }
+        func1(arr[index]);
+        func2(arr[index], numCorrect, total, correctCounter);
+        index++;
+      } 
+    }, false);
+  }
 
 	function fold(arr) {
 		var i = 0;
@@ -204,6 +253,49 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       })
 		}
 	}
+  function checkInput(elem, arr, index, numCorrect, total, counterEl) {
+    var input;
+    var isCorrect = false;
+    console.log(counterEl);
+    console.log(numCorrect);
+
+    elem.addEventListener('keydown', function(e) {
+      if (!elem.classList.contains('active')) {
+        if (e.keyCode === 13) {
+          input = this.value;
+          if (verbs[arr].length === 1) {
+            isCorrect = input === verbs[arr][0];
+          } else {
+            isCorrect = input === verbs[arr][index];
+          }
+          
+          if (isCorrect) {
+            this.classList.add('active');
+            numCorrect+= 1;
+            updateCounter(numCorrect, total, counterEl);
+            console.log("congrats, correct");
+          } else {
+            console.log("incorrect");
+          }
+        }
+      } else {
+        elem.classList.remove('active');
+      }
+      
+    });
+  }
+
+  function randomize(verb, numCorrect, total, counterEl) {
+    var index = Math.floor(Math.random() * 2);
+    var forms = document.getElementsByClassName('full-height-block__list-item');
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.focus = true;
+    input.classList.add('full-height-block__input');
+    forms[index + 1].innerText = '';
+    forms[index + 1].appendChild(input);
+    checkInput(document.querySelector('.full-height-block__input'), verb, index, numCorrect, total, counterEl);
+  }
 
   function study(el) {
     var headline = document.querySelector('.full-height-block__verb');
@@ -226,9 +318,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     		} else {
     			forms[i].innerText = verbs[el][i - 1];
     		}
-    		
     	}
-    	
     }
     study.removeChild(play);
     

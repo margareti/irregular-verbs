@@ -48,4 +48,20 @@
   font-size: 35px;
   max-width: 300px;
   padding: 0 20px;
+  text-align: center;
+  &.active {
+    color: green;
+  }
+}
+
+.full-height-block__counter {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  font-size: 40px;
+  display: none;
+  &.active {
+    display: block;
+  }
 }
