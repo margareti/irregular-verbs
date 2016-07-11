@@ -135,6 +135,29 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   var numCorrect = 0;
   var chooseAll = document.getElementsByClassName('choose-verbs__all');
   var clearBtns = document.getElementsByClassName('choose-verbs__clear-all');
+  var passed = [];
+
+  function saveData(x) {
+    localStorage.setItem('passed', x);
+	}
+
+	function getPassedItems(str) {
+    var i = 0;
+    var arr = str.split(',');
+    var current;
+    var currentItem;
+    for (; i < arr.length; i++){
+      current = arr[i];
+      currentItem = document.getElementById(current);
+      currentItem.parentElement.classList.add('active');
+    }
+	}
+	if (localStorage.passed.length < 1) {
+	  saveData(passed);
+	} else {
+    getPassedItems(localStorage.passed);
+	}
+
   
   toggleAll(chooseAll);
   clearAll(clearBtns);
@@ -252,7 +275,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
         console.log(arr.length);
       	if (index + 1 === arr.length) {
       		nxt.innerText = 'Back';
-          nxt.addEventListener('click', function(){window.location = 'http://localhost:3000/';})
+          nxt.addEventListener('click', function(){window.location = 'index.html';})
       	}
         func(arr[index]);
         index++;
@@ -267,13 +290,17 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       if (index < arr.length) {
         console.log(arr.length);
         if (index + 1 === arr.length) {
-          nxt.innerText = 'Back';
-          nxt.addEventListener('click', function(){window.location = 'http://localhost:3000/';})
+          nxt.innerText = 'Results';
+          nxt.addEventListener('click', function(){
+          	//To DO:
+          	//loadResults();
+          })
         }
         func1(arr[index]);
         func2(arr[index]);
         index++;
       } 
+      saveData(passed);
     }, false);
   }
 
@@ -300,35 +327,33 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       })
 		}
 	}
+
   function checkInput(elem, arr, index) {
     var input;
     var isCorrect = false;
-    
-
-    elem.addEventListener('keydown', function(e) {
-      if (!elem.classList.contains('active')) {
-        if (e.keyCode === 13) {
-          input = this.value;
-          if (verbs[arr].length === 1) {
-            isCorrect = input === verbs[arr][0];
-          } else {
-            isCorrect = input === verbs[arr][index];
-          }
-          
-          if (isCorrect) {
-
-            this.classList.add('active');
-            numCorrect += 1;
-            updateCounter(numCorrect, total, counterEl);
-            console.log("congrats, correct");
-          } else {
-            console.log("incorrect");
-          }
-        }
+    var newCheck = false;
+    elem.addEventListener('keyup', function(e) {
+    	
+      input = this.value.toLowerCase().trim();
+      if (verbs[arr].length === 1) {
+        isCorrect = input === verbs[arr][0];
       } else {
-        elem.classList.remove('active');
+        isCorrect = input === verbs[arr][index];
       }
-      
+      if (isCorrect) {
+        this.classList.add('active');
+        
+        if (!newCheck) {
+        	numCorrect += 1;
+          updateCounter(numCorrect, total, counterEl);
+          newCheck = true;
+        }
+        if (passed.indexOf(arr) === -1) {
+        	passed.push(arr);
+        }    
+      } else {
+      	this.classList.remove('active');
+      }
     });
   }
 

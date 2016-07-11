@@ -42,7 +42,17 @@
 .choose-verbs__section--two input:checked + label {
 	background: rgba(cadetblue, 0.15);
 }
-
+.choose-verbs__section--one .active, 
+.choose-verbs__section--two .active,
+.choose-verbs__section--three .active, 
+.choose-verbs__section--four .active {
+	&:hover {
+		border-color: lighten(green, 10%);
+		background: transparent;
+	}
+	background: transparent;
+	border-color: green;
+}
 .choose-verbs label {
 	display: block;
 	width: 100%;
