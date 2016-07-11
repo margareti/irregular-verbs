@@ -45,9 +45,8 @@
 
 .choose-verbs__section .active {
 	&:hover {
-		border-color: lighten(green, 10%);
+	  border-color: lighten(green, 10%);
 	}
-	
 	border-color: green;
 }
 .choose-verbs__section .active label:hover {
