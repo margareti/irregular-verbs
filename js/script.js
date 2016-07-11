@@ -152,7 +152,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       currentItem.parentElement.classList.add('active');
     }
 	}
-	if (localStorage.passed.length < 1) {
+	if (!localStorage.passed) {
 	  saveData(passed);
 	} else {
     getPassedItems(localStorage.passed);
