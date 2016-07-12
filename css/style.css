@@ -320,7 +320,9 @@ body {
       content: '✘'; }
 
 .results__home {
-  text-align: right; }
+  text-align: right;
+  position: fixed;
+  right: 0; }
 
 .results__home a {
   font-size: 20px;
