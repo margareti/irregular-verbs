@@ -98,3 +98,8 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
+@media (max-width: 479px) {
+  .choose-verbs fieldset {
+    width: calc((100% - 31px) / 2);
+  }
+}

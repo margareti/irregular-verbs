@@ -65,8 +65,15 @@
     display: block;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 479px) {
   .full-height-block__btn-wrap {
     text-align: center;
   }
+  .full-height-block__input {
+    max-width: 250px;
+  }
+  .full-height-block__counter {
+    top: 40px;
+  }
+
 }

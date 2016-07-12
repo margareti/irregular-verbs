@@ -50,3 +50,8 @@
   color: inherit;
   display: inline-block;
 }
+@media (max-width: 479px) {
+  .results__home {
+    display: none;
+  }
+}

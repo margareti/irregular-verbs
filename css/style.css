@@ -231,6 +231,10 @@ body {
   padding-top: 40px;
   padding-bottom: 40px; }
 
+@media (max-width: 479px) {
+  .choose-verbs fieldset {
+    width: calc((100% - 31px) / 2); } }
+
 .full-height-block {
   min-height: 100vh;
   box-sizing: border-box;
@@ -291,9 +295,13 @@ body {
   .full-height-block__counter.active {
     display: block; }
 
-@media (max-width: 767px) {
+@media (max-width: 479px) {
   .full-height-block__btn-wrap {
-    text-align: center; } }
+    text-align: center; }
+  .full-height-block__input {
+    max-width: 250px; }
+  .full-height-block__counter {
+    top: 40px; } }
 
 .results__wrapper {
   max-width: 700px;
@@ -335,6 +343,10 @@ body {
   padding: 20px;
   color: inherit;
   display: inline-block; }
+
+@media (max-width: 479px) {
+  .results__home {
+    display: none; } }
 
 .main-footer {
   text-align: center;
@@ -390,3 +402,7 @@ body {
 .main-nav__item a {
   text-decoration: none;
   color: inherit; }
+
+@media (max-width: 479px) {
+  .main-nav {
+    width: 100%; } }
