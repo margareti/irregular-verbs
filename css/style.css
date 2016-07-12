@@ -265,7 +265,7 @@ body {
   font-size: 35px;
   border: 1px dashed cadetblue;
   padding: 5px 20px;
-  margin: 0 10px;
+  margin: 5px 10px;
   cursor: pointer;
   transition: 2s; }
   .full-height-block__list-item:hover {
@@ -290,6 +290,10 @@ body {
   display: none; }
   .full-height-block__counter.active {
     display: block; }
+
+@media (max-width: 767px) {
+  .full-height-block__btn-wrap {
+    text-align: center; } }
 
 .results__wrapper {
   max-width: 700px;

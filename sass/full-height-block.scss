@@ -35,7 +35,7 @@
   font-size: 35px;
   border: 1px dashed cadetblue;
   padding: 5px 20px;
-  margin: 0 10px;
+  margin: 5px 10px;
   cursor: pointer;
   transition: 2s;
   &:hover {
@@ -63,5 +63,10 @@
   display: none;
   &.active {
     display: block;
+  }
+}
+@media (max-width: 767px) {
+  .full-height-block__btn-wrap {
+    text-align: center;
   }
 }
