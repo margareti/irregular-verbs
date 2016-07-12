@@ -97,7 +97,8 @@ body {
   cursor: pointer; }
 
 .button-container {
-  margin: 10px 0; }
+  margin: 10px 0;
+  width: 100%; }
 
 .svg-src {
   display: none; }
@@ -299,9 +300,10 @@ body {
   .full-height-block__btn-wrap {
     text-align: center; }
   .full-height-block__input {
-    max-width: 250px; }
+    max-width: 200px; }
   .full-height-block__counter {
-    top: 40px; } }
+    top: 40px;
+    position: absolute; } }
 
 .results__wrapper {
   max-width: 700px;

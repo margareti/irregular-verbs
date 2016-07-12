@@ -333,20 +333,21 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
 		var elem;
 		var titles = document.getElementsByClassName('choose-verbs__section');
 		var parentClass;
+    var buttons = document.getElementById('main-buttons');
+    var idx;
+
 		for (; i < arr.length; i++) {
       elem = arr[i];
       elem.addEventListener('click', function() {
         parentClass = this.parentElement.classList;
+        buttons.parentElement.removeChild(buttons);
+        this.parentElement.appendChild(buttons);
         if (parentClass.contains('fold')) {
         	for (j = 0; j < titles.length; j++) {
-
           	titles[j].classList.add('fold');
-          	console.log(titles[j].classList)
           }
         	parentClass.remove('fold');
-        } else {
-        	parentClass.add('fold');
-        }
+        } 
       })
 		}
 	}

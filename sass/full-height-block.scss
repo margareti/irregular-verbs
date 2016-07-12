@@ -70,10 +70,11 @@
     text-align: center;
   }
   .full-height-block__input {
-    max-width: 250px;
+    max-width: 200px;
   }
   .full-height-block__counter {
     top: 40px;
+    position: absolute;
   }
 
 }
