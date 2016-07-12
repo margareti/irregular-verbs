@@ -108,7 +108,7 @@ body {
 .button-container--fixed {
   width: 250px;
   right: 0;
-  bottom: 0;
+  bottom: 100px;
   position: fixed; }
   .button-container--fixed .button {
     margin-right: 0;
