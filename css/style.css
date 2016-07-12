@@ -308,6 +308,9 @@ body {
 .mobile .full-height-block__input {
   max-width: 200px; }
 
+.mobile .full-height-block__content {
+  margin-top: initial; }
+
 .results__wrapper {
   max-width: 700px;
   border: 1px solid #ccc;
