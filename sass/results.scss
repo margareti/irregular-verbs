@@ -1,0 +1,50 @@
+
+.results__wrapper {
+  max-width: 700px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  margin: auto;
+  width:100%;
+  &:before {
+  	content: 'Your Results';
+    display: block;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 10px;
+    font-size: 20px;
+
+  }
+}
+.results__item {
+	border-bottom: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+  &:after {
+  	position: absolute;
+	  right: 10px;
+  }
+  &--correct {
+		color: green;
+		&:after {
+			content: '✔';
+	    
+		}
+	}	
+	&--incorrect {
+		color: red;
+		&:after {
+			content: '✘';
+			
+		}
+	}
+}
+
+.results__home {
+  text-align: right;
+}
+.results__home a {
+  font-size: 20px;
+  text-decoration: none;
+  padding: 20px;
+  color: inherit;
+  display: inline-block;
+}

@@ -1,5 +1,5 @@
 .choose-verbs fieldset {
-  width: calc((100% - 20px) / 3);
+  width: calc((100% - 31px) / 3);
   border-width: 2px;
   border-style: solid;
   padding: 0;
@@ -8,33 +8,26 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
-.choose-verbs fieldset:nth-child(3n+1) {
-   margin-right: 0;
+.choose-verbs__letter {
+    width: 100%;
+    padding: 10px 0;
 }
 .choose-verbs input {
 	display: none;
 }
-.choose-verbs__section--one label:after {
-	color: rebeccapurple;
-}
-.choose-verbs__section--two label:after {
+
+.choose-verbs__section--two label:after,
+.choose-verbs__section--four label:after {
 	color: cadetblue;
 }
-.choose-verbs__section--four label:after {
-	color: darken(cornflowerblue, 15%);
-}
+
 .choose-verbs input:checked + label:after {
 	content: '✔';
 	position: absolute;
 	right: 10px;
 	
 }
-.choose-verbs__section--one label:hover {
-	background: rgba(rebeccapurple, 0.25);
-}
-.choose-verbs__section--one input:checked + label {
-	background: rgba(rebeccapurple, 0.15);
-}
+
 
 .choose-verbs__section--two label:hover {
 	background: rgba(cadetblue, 0.25);
@@ -45,9 +38,9 @@
 
 .choose-verbs__section .active {
 	&:hover {
-	  border-color: lighten(green, 10%);
+	  border-color: lighten(green, 17%);
 	}
-	border-color: green;
+	border-color: lighten(green, 15%);
 }
 .choose-verbs__section .active label:hover {
 	background: transparent;
@@ -71,16 +64,22 @@
 .choose-verbs label:hover .translation{
 	opacity: 1;
 }
-.fold fieldset {
+.fold fieldset,
+.fold .choose-verbs__letter {
 	display: none;
 }
-.choose-verbs__section--one fieldset {
-	border-color: rebeccapurple;
-}
-.choose-verbs__section--two fieldset {
+
+.choose-verbs__section--two fieldset,
+.choose-verbs__section--four fieldset  {
 	border-color: cadetblue;
 	&:hover {
 		border-color: lighten(cadetblue, 15%);
+	}
+}
+.choose-verbs__section--one fieldset {
+    border-color: darken(#ccc, 15%);
+	&:hover {
+		border-color: darken(#ccc, 10%);
 	}
 }
 .choose-verbs__section--three fieldset {
@@ -89,12 +88,7 @@
 		border-color: darken(bisque, 10%);
 	}
 }
-.choose-verbs__section--four fieldset {
-	border-color: cornflowerblue;
-	&:hover {
-		border-color: darken(cornflowerblue, 15%)
-	}
-}
+
 .choose-verbs > div {
 	display: flex;
 	flex-wrap: wrap;

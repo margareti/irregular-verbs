@@ -79,7 +79,7 @@ body {
   display: none; }
 
 .container {
-  max-width: 1300px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -95,6 +95,15 @@ body {
   border-bottom-style: solid;
   border-bottom-color: slategrey;
   cursor: pointer; }
+
+.button-container {
+  margin: 10px 0; }
+
+.svg-src {
+  display: none; }
+
+.svg-src path {
+  fill: #fff; }
 
 .study {
   min-height: 100vh;
@@ -137,7 +146,7 @@ body {
     border-style: solid; }
 
 .choose-verbs fieldset {
-  width: calc((100% - 20px) / 3);
+  width: calc((100% - 31px) / 3);
   border-width: 2px;
   border-style: solid;
   padding: 0;
@@ -146,31 +155,21 @@ body {
   margin-right: 10px;
   margin-bottom: 10px; }
 
-.choose-verbs fieldset:nth-child(3n+1) {
-  margin-right: 0; }
+.choose-verbs__letter {
+  width: 100%;
+  padding: 10px 0; }
 
 .choose-verbs input {
   display: none; }
 
-.choose-verbs__section--one label:after {
-  color: rebeccapurple; }
-
-.choose-verbs__section--two label:after {
-  color: cadetblue; }
-
+.choose-verbs__section--two label:after,
 .choose-verbs__section--four label:after {
-  color: #1f66e5; }
+  color: cadetblue; }
 
 .choose-verbs input:checked + label:after {
   content: '✔';
   position: absolute;
   right: 10px; }
-
-.choose-verbs__section--one label:hover {
-  background: rgba(102, 51, 153, 0.25); }
-
-.choose-verbs__section--one input:checked + label {
-  background: rgba(102, 51, 153, 0.15); }
 
 .choose-verbs__section--two label:hover {
   background: rgba(95, 158, 160, 0.25); }
@@ -179,9 +178,9 @@ body {
   background: rgba(95, 158, 160, 0.15); }
 
 .choose-verbs__section .active {
-  border-color: green; }
+  border-color: #00cd00; }
   .choose-verbs__section .active:hover {
-    border-color: #00b300; }
+    border-color: #00d700; }
 
 .choose-verbs__section .active label:hover {
   background: transparent; }
@@ -203,26 +202,26 @@ body {
 .choose-verbs label:hover .translation {
   opacity: 1; }
 
-.fold fieldset {
+.fold fieldset,
+.fold .choose-verbs__letter {
   display: none; }
 
-.choose-verbs__section--one fieldset {
-  border-color: rebeccapurple; }
-
-.choose-verbs__section--two fieldset {
+.choose-verbs__section--two fieldset,
+.choose-verbs__section--four fieldset {
   border-color: cadetblue; }
-  .choose-verbs__section--two fieldset:hover {
+  .choose-verbs__section--two fieldset:hover,
+  .choose-verbs__section--four fieldset:hover {
     border-color: #8fbbbd; }
+
+.choose-verbs__section--one fieldset {
+  border-color: #a6a6a6; }
+  .choose-verbs__section--one fieldset:hover {
+    border-color: #b3b3b3; }
 
 .choose-verbs__section--three fieldset {
   border-color: #ffc178; }
   .choose-verbs__section--three fieldset:hover {
     border-color: #ffcd91; }
-
-.choose-verbs__section--four fieldset {
-  border-color: cornflowerblue; }
-  .choose-verbs__section--four fieldset:hover {
-    border-color: #1f66e5; }
 
 .choose-verbs > div {
   display: flex;
@@ -287,3 +286,83 @@ body {
   display: none; }
   .full-height-block__counter.active {
     display: block; }
+
+.results__wrapper {
+  max-width: 700px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  margin: auto;
+  width: 100%; }
+  .results__wrapper:before {
+    content: 'Your Results';
+    display: block;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 10px;
+    font-size: 20px; }
+
+.results__item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  position: relative; }
+  .results__item:after {
+    position: absolute;
+    right: 10px; }
+  .results__item--correct {
+    color: green; }
+    .results__item--correct:after {
+      content: '✔'; }
+  .results__item--incorrect {
+    color: red; }
+    .results__item--incorrect:after {
+      content: '✘'; }
+
+.results__home {
+  text-align: right; }
+
+.results__home a {
+  font-size: 20px;
+  text-decoration: none;
+  padding: 20px;
+  color: inherit;
+  display: inline-block; }
+
+.main-footer {
+  text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 20px; }
+
+.main-footer a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: lowercase;
+  height: 100%;
+  width: 100%;
+  display: block; }
+
+.main-footer__item {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background: cadetblue;
+  color: #ffffff;
+  font-size: 0;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin: 0 2px; }
+  .main-footer__item--fb {
+    background-image: url(../img/fb.svg); }
+  .main-footer__item--vk {
+    background-image: url(../img/vk.png);
+    background-size: 20px; }
+  .main-footer__item--gm a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center; }
+
+.main-footer__icons {
+  margin: 10px 0;
+  font-size: 0; }

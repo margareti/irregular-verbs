@@ -136,6 +136,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   var chooseAll = document.getElementsByClassName('choose-verbs__all');
   var clearBtns = document.getElementsByClassName('choose-verbs__clear-all');
   var passed = [];
+  var results = {};
 
   function saveData(x) {
     localStorage.setItem('passed', x);
@@ -209,25 +210,34 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     el.innerText = num + '/' + total;
   }
 
+  function genResultsObj(arr, obj) {
+  	var i = 0;
+  	for (; i < arr.length; i++) {
+      obj[arr[i]] = false;
+  	}
+  	return obj;
+  }
+
   function practice(ev) {
     var words = getChecked();
     var selection = document.querySelector('.choose-verbs');
     var nextBtn = document.getElementById('next');
     var idx = 0;
     var studySection = document.querySelector('.study');
-    
+    results = genResultsObj(words, results);
+    console.log(results);
     counterEl.classList.add('active');
     
     ev.preventDefault();
 
     total = words.length;
     updateCounter(numCorrect, total, counterEl);
+
     selection.classList.add('hide');
     studySection.classList.remove('hide');
     if (words.length) {
       idx++;
       study(words[0]);
-      console.log("input ", words[0])
       randomize(words[0]);
       getNextPractice(nextBtn, words, idx, study, randomize);
     }
@@ -294,7 +304,9 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
           nxt.innerText = 'Results';
           nxt.addEventListener('click', function(){
           	//To DO:
-          	//loadResults();
+          	//add argument to getResults
+          	openResults();
+          	getResults(results);
           })
         }
         func1(arr[index]);
@@ -348,12 +360,16 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
         	numCorrect += 1;
           updateCounter(numCorrect, total, counterEl);
           newCheck = true;
+          results[arr] = true;
         }
         if (passed.indexOf(arr) === -1) {
         	passed.push(arr);
         }    
       } else {
       	this.classList.remove('active');
+      }
+      if (e.keyCode === 13) {
+      	document.getElementById('next').click();
       }
     });
   }
@@ -404,6 +420,33 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     scSrc.type = 'audio/mp3';
 
     study.appendChild(au);
+  }
+
+  var testObj = {
+  	'tell': true,
+  	'bring': false,
+  	'buy': true,
+  }
+
+  function openResults() {
+  	var results = document.querySelector('.results');
+  	var study = document.querySelector('.study');
+  	study.classList.add('hide');
+  	results.classList.remove('hide');
+  }
+
+  function getResults(obj) {
+    var resultsBlock = document.getElementById('set-results');
+    var i = 0;
+    var keys = Object.keys(obj);
+    var listItem;
+    for (; i < keys.length; i++) {
+      listItem = document.createElement('li');
+      listItem.classList.add('results__item');
+      listItem.innerText = keys[i];
+      obj[keys[i]] ? listItem.classList.add('results__item--correct') : listItem.classList.add('results__item--incorrect');
+      resultsBlock.appendChild(listItem);
+    }
   }
 })();
 
