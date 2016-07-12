@@ -224,9 +224,11 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     var nextBtn = document.getElementById('next');
     var idx = 0;
     var studySection = document.querySelector('.study');
+    var mainBtns = document.getElementById('main-buttons');
     results = genResultsObj(words, results);
     console.log(results);
     counterEl.classList.add('active');
+    mainBtns.classList.add('hide');
     
     ev.preventDefault();
 
@@ -272,8 +274,11 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	var nextBtn = document.getElementById('next');
   	var idx = 0;
   	var studySection = document.querySelector('.study');
+    var mainBtns = document.getElementById('main-buttons');
+
 
   	ev.preventDefault();
+    mainBtns.classList.add('hide');
   	selection.classList.add('hide');
   	studySection.classList.remove('hide');
   	if (words.length) {

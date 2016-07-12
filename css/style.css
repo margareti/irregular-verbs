@@ -79,7 +79,7 @@ body {
   display: none; }
 
 .container {
-  max-width: calc(100% - 500px);
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -104,26 +104,6 @@ body {
 
 .svg-src path {
   fill: #fff; }
-
-.button-container--fixed {
-  width: 250px;
-  right: 0;
-  bottom: 100px;
-  position: fixed; }
-  .button-container--fixed .button {
-    margin-right: 0;
-    width: 240px; }
-  .button-container--fixed.bottom {
-    bottom: 100px; }
-
-@media (max-width: 1200px) {
-  .button-container--fixed {
-    width: 200px; }
-    .button-container--fixed .button {
-      width: 190px; }
-  .container {
-    max-width: calc(100% - 200px);
-    margin: 0; } }
 
 .study {
   min-height: 100vh;
