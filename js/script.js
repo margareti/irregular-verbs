@@ -241,6 +241,13 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       randomize(words[0]);
       getNextPractice(nextBtn, words, idx, study, randomize);
     }
+    if (words.length === 1) {
+      nextBtn.innerText = 'Results';
+      nextBtn.addEventListener('click', function(){
+        openResults();
+        getResults(results);
+      })
+    }
     return false;
   }
 
@@ -299,7 +306,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       e.preventDefault();
       var nxt = document.getElementById('next');
       if (index < arr.length) {
-        console.log(arr.length);
+
         if (index + 1 === arr.length) {
           nxt.innerText = 'Results';
           nxt.addEventListener('click', function(){
@@ -444,7 +451,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     for (; i < keys.length; i++) {
       listItem = document.createElement('li');
       listItem.classList.add('results__item');
-      listItem.innerText = keys[i];
+      listItem.innerText = 'to ' + keys[i];
       obj[keys[i]] ? listItem.classList.add('results__item--correct') : listItem.classList.add('results__item--incorrect');
       resultsBlock.appendChild(listItem);
     }
