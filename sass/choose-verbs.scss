@@ -89,11 +89,15 @@
 	}
 }
 
-.choose-verbs > div {
+.choose-verbs__wrapper > div {
 	display: flex;
 	flex-wrap: wrap;
 }
 
 .choose-verbs {
     padding-top: 40px;
+}
+.choose-verbs__wrapper {
+    height: calc(100vh - 230px);
+    overflow-y: scroll;
 }
