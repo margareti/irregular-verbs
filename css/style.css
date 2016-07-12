@@ -227,6 +227,9 @@ body {
   display: flex;
   flex-wrap: wrap; }
 
+.choose-verbs {
+  padding-top: 40px; }
+
 .full-height-block {
   min-height: 100vh;
   box-sizing: border-box;
@@ -366,3 +369,16 @@ body {
 .main-footer__icons {
   margin: 10px 0;
   font-size: 0; }
+
+.main-nav {
+  color: #ffffff;
+  background: #000;
+  position: fixed; }
+
+.main-nav__item {
+  display: inline-block;
+  padding: 10px; }
+
+.main-nav__item a {
+  text-decoration: none;
+  color: inherit; }

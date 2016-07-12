@@ -303,8 +303,6 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
         if (index + 1 === arr.length) {
           nxt.innerText = 'Results';
           nxt.addEventListener('click', function(){
-          	//To DO:
-          	//add argument to getResults
           	openResults();
           	getResults(results);
           })
@@ -378,11 +376,14 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     var index = Math.floor(Math.random() * 2);
     var forms = document.getElementsByClassName('full-height-block__list-item');
     var input = document.createElement('input');
+    var inputDOM;
     input.type = 'text';
-    input.focus = true;
+    
     input.classList.add('full-height-block__input');
     forms[index + 1].innerText = '';
     forms[index + 1].appendChild(input);
+    inputDOM = document.querySelector('.full-height-block__input');
+    inputDOM.focus();
     checkInput(document.querySelector('.full-height-block__input'), verb, index);
   }
 
