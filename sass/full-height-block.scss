@@ -83,5 +83,8 @@
   .full-height-block__content {
     margin-top: initial;
   }
+  .full-height-block {
+    min-height: calc(100vh - 145px);
+  }
 }
 
