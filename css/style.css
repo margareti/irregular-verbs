@@ -312,7 +312,7 @@ body {
   margin-top: initial; }
 
 .mobile .full-height-block {
-  min-height: calc(100vh - 145px); }
+  min-height: calc(100vh - 140px); }
 
 .results__wrapper {
   max-width: 700px;
