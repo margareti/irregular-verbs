@@ -86,5 +86,8 @@
   .full-height-block {
     min-height: calc(100vh - 140px);
   }
+  .choose-verbs input:checked + label:after {
+    right: 5px;
+  }
 }
 
