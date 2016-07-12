@@ -126,6 +126,28 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	'win': ['won'],
   	'write': ['wrote', 'written']
   }
+
+	var isMobile = {
+    Android: function() {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+      return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+      return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+	};
+
   var submitBtn = document.getElementById('chooseVerbs');
   var toggleFold = document.getElementsByClassName('toggle-fold');
   var practiceBtn = document.getElementById('practiceVerbs');
@@ -137,6 +159,10 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   var clearBtns = document.getElementsByClassName('choose-verbs__clear-all');
   var passed = [];
   var results = {};
+
+  if (isMobile.any()) {
+  	document.getElementsByTagName('body')[0].classList.add('mobile');
+  }
 
   function saveData(x) {
     localStorage.setItem('passed', x);
@@ -462,6 +488,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
       resultsBlock.appendChild(listItem);
     }
   }
+
 })();
 
 
