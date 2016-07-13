@@ -35,7 +35,7 @@
   font-size: 35px;
   border: 1px dashed cadetblue;
   padding: 5px 20px;
-  margin: 0 10px;
+  margin: 5px 10px;
   cursor: pointer;
   transition: 2s;
   &:hover {
@@ -48,4 +48,46 @@
   font-size: 35px;
   max-width: 300px;
   padding: 0 20px;
+  text-align: center;
+  &.active {
+    color: green;
+  }
 }
+
+.full-height-block__counter {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  font-size: 40px;
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+
+.mobile {
+  .full-height-block__counter {
+    position: relative;
+    top: 0;
+    text-align: right;
+  }
+  .full-height-block__btn-wrap {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .full-height-block__input {
+    max-width: 200px;
+  }
+  .full-height-block__content {
+    margin-top: initial;
+  }
+  .full-height-block {
+    min-height: calc(100vh - 140px);
+  }
+  .choose-verbs input:checked + label:after {
+    right: 5px;
+  }
+}
+

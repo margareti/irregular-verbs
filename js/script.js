@@ -126,10 +126,159 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	'win': ['won'],
   	'write': ['wrote', 'written']
   }
+
+	var isMobile = {
+    Android: function() {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+      return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+      return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+	};
+
   var submitBtn = document.getElementById('chooseVerbs');
   var toggleFold = document.getElementsByClassName('toggle-fold');
+  var practiceBtn = document.getElementById('practiceVerbs');
+
+  var counterEl = document.querySelector('.full-height-block__counter');
+  var total;
+  var numCorrect = 0;
+  var chooseAll = document.getElementsByClassName('choose-verbs__all');
+  var clearBtns = document.getElementsByClassName('choose-verbs__clear-all');
+  var passed = [];
+  var results = {};
+
+  if (isMobile.any()) {
+  	document.getElementsByTagName('body')[0].classList.add('mobile');
+  }
+
+  function saveData(x) {
+    localStorage.setItem('passed', x);
+	}
+
+	function getPassedItems(str) {
+    var i = 0;
+    var arr = str.split(',');
+    var current;
+    var currentItem;
+    for (; i < arr.length; i++){
+      current = arr[i];
+      currentItem = document.getElementById(current);
+      currentItem.parentElement.classList.add('active');
+      passed.push(arr[i]);
+    }
+	}
+	if (!localStorage.passed) {
+	  saveData(passed);
+	} else {
+    getPassedItems(localStorage.passed);
+	}
+
+  
+  toggleAll(chooseAll);
+  clearAll(clearBtns);
+
+  function toggleAll(elem) {
+    
+    var parent;
+    var cBoxes;
+    var j = 0;
+    for (; j < elem.length; j++) {
+	  	elem[j].addEventListener('click', function(ev){
+	  		
+        var i = 0;
+	  		ev.stopPropagation();
+	  		parent = this.parentElement.parentElement;
+        cBoxes = parent.getElementsByTagName('input');
+        for (; i < cBoxes.length; i++) {
+        	cBoxes[i].checked = true;
+        }
+	  	});
+	  }	
+  }
+
+  function clearAll(elem) {
+    
+    var j = 0;
+    var parent;
+    var cBoxes;
+    for (; j < elem.length; j++) {
+	  	elem[j].addEventListener('click', function(ev){
+	  		var i = 0;
+	  		ev.stopPropagation();
+	  		parent = this.parentElement.parentElement;
+        cBoxes = parent.getElementsByTagName('input');
+        for (; i < cBoxes.length; i++) {
+        	cBoxes[i].checked = false;
+        }
+	  	});
+	  }	
+
+  }
+
   fold(toggleFold);
   submitBtn.addEventListener('click', populate);
+  practiceBtn.addEventListener('click', practice);
+
+  function updateCounter(num, total, el) {
+    el.innerText = num + '/' + total;
+  }
+
+  function genResultsObj(arr, obj) {
+  	var i = 0;
+  	for (; i < arr.length; i++) {
+      obj[arr[i]] = false;
+  	}
+  	return obj;
+  }
+
+  function practice(ev) {
+    var words = getChecked();
+    var selection = document.querySelector('.choose-verbs');
+    var nextBtn = document.getElementById('next');
+    var idx = 0;
+    var studySection = document.querySelector('.study');
+    var mainBtns = document.getElementById('main-buttons');
+    results = genResultsObj(words, results);
+    console.log(results);
+    counterEl.classList.add('active');
+    mainBtns.classList.add('hide');
+    
+    ev.preventDefault();
+
+    total = words.length;
+    updateCounter(numCorrect, total, counterEl);
+
+    selection.classList.add('hide');
+    studySection.classList.remove('hide');
+    if (words.length) {
+      idx++;
+      study(words[0]);
+      randomize(words[0]);
+      getNextPractice(nextBtn, words, idx, study, randomize);
+    }
+    if (words.length === 1) {
+      nextBtn.innerText = 'Results';
+      nextBtn.addEventListener('click', function(){
+        openResults();
+        getResults(results);
+      })
+    }
+    return false;
+  }
+
   
 
   function getChecked() {
@@ -151,8 +300,11 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
   	var nextBtn = document.getElementById('next');
   	var idx = 0;
   	var studySection = document.querySelector('.study');
+    var mainBtns = document.getElementById('main-buttons');
+
 
   	ev.preventDefault();
+    mainBtns.classList.add('hide');
   	selection.classList.add('hide');
   	studySection.classList.remove('hide');
   	if (words.length) {
@@ -172,7 +324,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
         console.log(arr.length);
       	if (index + 1 === arr.length) {
       		nxt.innerText = 'Back';
-          nxt.addEventListener('click', function(){window.location = 'http://localhost:3000/';})
+          nxt.addEventListener('click', function(){window.location = 'index.html';})
       	}
         func(arr[index]);
         index++;
@@ -180,6 +332,26 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     }, false);
 	}
 
+  function getNextPractice(elem, arr, index, func1, func2) {
+    elem.addEventListener('click', function(e) {
+      e.preventDefault();
+      var nxt = document.getElementById('next');
+      if (index < arr.length) {
+
+        if (index + 1 === arr.length) {
+          nxt.innerText = 'Results';
+          nxt.addEventListener('click', function(){
+          	openResults();
+          	getResults(results);
+          })
+        }
+        func1(arr[index]);
+        func2(arr[index]);
+        index++;
+      } 
+      saveData(passed);
+    }, false);
+  }
 
 	function fold(arr) {
 		var i = 0;
@@ -187,23 +359,72 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
 		var elem;
 		var titles = document.getElementsByClassName('choose-verbs__section');
 		var parentClass;
+    var buttons = document.getElementById('main-buttons');
+    var idx;
+
 		for (; i < arr.length; i++) {
       elem = arr[i];
       elem.addEventListener('click', function() {
         parentClass = this.parentElement.classList;
+        buttons.parentElement.removeChild(buttons);
+        this.parentElement.appendChild(buttons);
         if (parentClass.contains('fold')) {
         	for (j = 0; j < titles.length; j++) {
-
           	titles[j].classList.add('fold');
-          	console.log(titles[j].classList)
           }
         	parentClass.remove('fold');
-        } else {
-        	parentClass.add('fold');
-        }
+        } 
       })
 		}
 	}
+
+  function checkInput(elem, arr, index) {
+    var input;
+    var isCorrect = false;
+    var newCheck = false;
+    elem.addEventListener('keyup', function(e) {
+    	
+      input = this.value.toLowerCase().trim();
+      if (verbs[arr].length === 1) {
+        isCorrect = input === verbs[arr][0];
+      } else {
+        isCorrect = input === verbs[arr][index];
+      }
+      if (isCorrect) {
+        this.classList.add('active');
+        
+        if (!newCheck) {
+        	numCorrect += 1;
+          updateCounter(numCorrect, total, counterEl);
+          newCheck = true;
+          results[arr] = true;
+        }
+        if (passed.indexOf(arr) === -1) {
+        	passed.push(arr);
+        }    
+      } else {
+      	this.classList.remove('active');
+      }
+      if (e.keyCode === 13) {
+      	document.getElementById('next').click();
+      }
+    });
+  }
+
+  function randomize(verb) {
+    var index = Math.floor(Math.random() * 2);
+    var forms = document.getElementsByClassName('full-height-block__list-item');
+    var input = document.createElement('input');
+    var inputDOM;
+    input.type = 'text';
+    
+    input.classList.add('full-height-block__input');
+    forms[index + 1].innerText = '';
+    forms[index + 1].appendChild(input);
+    inputDOM = document.querySelector('.full-height-block__input');
+    inputDOM.focus();
+    checkInput(document.querySelector('.full-height-block__input'), verb, index);
+  }
 
   function study(el) {
     var headline = document.querySelector('.full-height-block__verb');
@@ -226,9 +447,7 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
     		} else {
     			forms[i].innerText = verbs[el][i - 1];
     		}
-    		
     	}
-    	
     }
     study.removeChild(play);
     
@@ -242,6 +461,34 @@ var raw = ["be","become","begin","bet","bite","bleed","blow","break","bring","bu
 
     study.appendChild(au);
   }
+
+  var testObj = {
+  	'tell': true,
+  	'bring': false,
+  	'buy': true,
+  }
+
+  function openResults() {
+  	var results = document.querySelector('.results');
+  	var study = document.querySelector('.study');
+  	study.classList.add('hide');
+  	results.classList.remove('hide');
+  }
+
+  function getResults(obj) {
+    var resultsBlock = document.getElementById('set-results');
+    var i = 0;
+    var keys = Object.keys(obj);
+    var listItem;
+    for (; i < keys.length; i++) {
+      listItem = document.createElement('li');
+      listItem.classList.add('results__item');
+      listItem.innerText = 'to ' + keys[i];
+      obj[keys[i]] ? listItem.classList.add('results__item--correct') : listItem.classList.add('results__item--incorrect');
+      resultsBlock.appendChild(listItem);
+    }
+  }
+
 })();
 
 
