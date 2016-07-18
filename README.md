@@ -5,7 +5,7 @@ Features about 100 verbs that are divided into 4 levels based on frequency of us
 
 
 #To use:
-- Select the words that you would like to study/practice.
+- [Select the words](https://margareti.github.io/irregular-verbs/) that you would like to study/practice.
 
 - Click "Study" to see the three forms and listen to the pronunciation. 
   OR
