@@ -18,6 +18,6 @@ Features about 100 verbs that are divided into 4 levels based on frequency of us
 - do translations of verbs in other languages
 
 
-#To Contribute
+#To contribute
 To add new features, please create a pull-request.
 
