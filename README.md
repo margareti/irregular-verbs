@@ -11,6 +11,13 @@ Features about 100 verbs that are divided into 4 levels based on frequency of us
   OR
 - Click "Practice" to fill in the missing blanks. 
 
+#To do
+- add "select 1 verb or more" popup if "practice" or "study" are clicked without any selected items.
+- add a module to practice verbs in sentences (multiple choice)
+- add explanation of how to use verbs
+- do translations of verbs in other languages
+
+
 #To Contribute
 To add new features, please create a pull-request.
 
