@@ -15,7 +15,6 @@ Features about 100 verbs that are divided into 4 levels based on frequency of us
 - default audio volume 60% rather than 100%
 - in Study mode, audio to run by default
 - instead of "Study", name button "Read and listen"
-
 - add "select 1 verb or more" popup if "practice" or "study" are clicked without any selected items.
 - add a module to practice verbs in sentences (multiple choice)
 - add explanation of how to use verbs
